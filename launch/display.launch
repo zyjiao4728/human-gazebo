@@ -1,0 +1,11 @@
+<launch>
+    <arg name="model" default="1"/>
+    <arg name="rvizconfig" default="$(find human-gazebo)/config/human.rviz" />
+
+    <param name="robot_description" command="$(find xacro)/xacro $(find human-gazebo)/urdf/humanSubject0$(arg model)/humanSubject0$(arg model)_48dof.urdf" />
+    
+    <node name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/>
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" output="screen" />
+
+</launch>
